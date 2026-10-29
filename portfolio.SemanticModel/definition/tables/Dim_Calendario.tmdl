@@ -1,0 +1,103 @@
+table Dim_Calendario
+	lineageTag: edb0da93-fd05-49c4-9445-46aa01653d67
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Short Date
+		lineageTag: 1221f579-0ff8-46d8-b0b5-abc79beb3516
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Ano
+		formatString: 0
+		lineageTag: 12a35457-840d-4858-9714-fd1c666a5018
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Numero
+		formatString: 0
+		lineageTag: 67ac3592-18be-4a68-a00b-53eb5537adf8
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mes_Numero]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Nome
+		lineageTag: 2ce5103e-2dbd-4031-a839-a9c202ddd806
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes_Nome]
+		sortByColumn: Mes_Numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano_Mes
+		dataType: string
+		lineageTag: 9688d793-dbac-435b-82ba-8f51bd194799
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ano_Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: 9f0457f4-2ed9-464f-a1c1-eeece030c9a6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio_Mes
+		formatString: Short Date
+		lineageTag: 09872963-83b7-4063-8c2d-b19ea4b7940a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Inicio_Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Dim_Calendario = calculated
+		mode: import
+		source = ```
+				
+				VAR DataInicial =
+				    MINX(
+				        Fato_Atendimentos,
+				        Fato_Atendimentos[data_atendimento]
+				    )
+				VAR DataFinal =
+				    MAXX(
+				        Fato_Atendimentos,
+				        Fato_Atendimentos[data_atendimento]
+				    )
+				RETURN
+				ADDCOLUMNS(
+				    CALENDAR(
+				        DATE(YEAR(DataInicial), 1, 1),
+				        DATE(YEAR(DataFinal), 12, 31)
+				    ),
+				    "Ano", YEAR([Date]),
+				    "Mes_Numero", MONTH([Date]),
+				    "Mes_Nome", FORMAT([Date], "mmmm"),
+				    "Ano_Mes", FORMAT([Date], "yyyy-MM"),
+				    "Trimestre", "T" & QUARTER([Date]),
+				    "Inicio_Mes", DATE(YEAR([Date]), MONTH([Date]), 1)
+				)
+				
+				```
+
+	annotation PBI_Id = 68a24aa74804413ca4c02215b9b97163
+

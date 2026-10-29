@@ -1,0 +1,168 @@
+table Fato_Atendimentos
+	lineageTag: b0fee1cc-e400-4479-a2ab-ea2cbd91b692
+
+	column id_atendimento
+		dataType: string
+		lineageTag: 312bbfe7-25d9-4868-8cbb-a9a8fea38ec3
+		summarizeBy: none
+		sourceColumn: id_atendimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cliente
+		dataType: string
+		lineageTag: 7dcc3c0c-7d9d-4aea-a016-4f0a82c77f62
+		summarizeBy: none
+		sourceColumn: id_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_atendimento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 95f0781e-6fc3-4847-9a9b-ee3b4e177bbd
+		summarizeBy: none
+		sourceColumn: data_atendimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column mes_referencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 79573daf-de5d-470d-a53c-b5dd9698d157
+		summarizeBy: none
+		sourceColumn: mes_referencia
+
+		variation Variação
+			isDefault
+			relationship: 05e20a17-5dcf-48a0-a87c-b41f553cff67
+			defaultHierarchy: LocalDateTable_e2a243fe-3e6e-4fb5-bc5b-c9b9d85a8dc7.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column canal
+		dataType: string
+		lineageTag: eae4acb1-698a-472f-bc92-720b40ec7710
+		summarizeBy: none
+		sourceColumn: canal
+
+		annotation SummarizationSetBy = Automatic
+
+	column motivo_contato
+		dataType: string
+		lineageTag: a0e548e6-6561-4a34-b546-faa39d763738
+		summarizeBy: none
+		sourceColumn: motivo_contato
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 350d4295-e359-482d-84e5-fb08eeb83e15
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column regiao
+		dataType: string
+		lineageTag: 1c882542-11f3-47cb-96c5-78092ec677c4
+		summarizeBy: none
+		sourceColumn: regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column tempo_primeira_resposta_min
+		dataType: int64
+		formatString: 0
+		lineageTag: a68ec3b5-bd59-411f-a415-51d1d0201f96
+		summarizeBy: sum
+		sourceColumn: tempo_primeira_resposta_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column tempo_resolucao_horas
+		dataType: double
+		formatString: 0
+		lineageTag: ec9ac5cb-4385-43ee-982b-4165dfa9f928
+		summarizeBy: sum
+		sourceColumn: tempo_resolucao_horas
+
+		annotation SummarizationSetBy = Automatic
+
+	column sla_cumprido
+		dataType: string
+		lineageTag: 662e9958-b2db-4c40-b57a-8dcc811dbdfd
+		summarizeBy: none
+		sourceColumn: sla_cumprido
+
+		annotation SummarizationSetBy = Automatic
+
+	column resolvido
+		dataType: string
+		lineageTag: 12997e12-18bc-4c77-894f-8bf90381c582
+		summarizeBy: none
+		sourceColumn: resolvido
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 0e358e6c-3224-404f-9160-dc0ff3b6d915
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column nota_csat
+		dataType: int64
+		formatString: 0
+		lineageTag: c36c774b-3596-481b-b97b-530ae8d7f6a7
+		summarizeBy: sum
+		sourceColumn: nota_csat
+
+		annotation SummarizationSetBy = Automatic
+
+	column nota_nps
+		dataType: int64
+		formatString: 0
+		lineageTag: 80c741c1-0db6-41f4-92d8-440348daa877
+		summarizeBy: sum
+		sourceColumn: nota_nps
+
+		annotation SummarizationSetBy = Automatic
+
+	column reincidente_30d
+		dataType: string
+		lineageTag: f796084d-c4e1-438d-8e31-1e2b08c3a5ba
+		summarizeBy: none
+		sourceColumn: reincidente_30d
+
+		annotation SummarizationSetBy = Automatic
+
+	column comentario
+		dataType: string
+		lineageTag: 60aa4611-51ee-4b6b-a5de-28dc0d6680cb
+		summarizeBy: none
+		sourceColumn: comentario
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fato_Atendimentos = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\vitor\Documents\Portfólio Ju\customer_experience_portfolio\customer_experience_portfolio\base_satisfacao_clientes.csv"),[Delimiter=";", Columns=17, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"id_atendimento", type text}, {"id_cliente", type text}, {"data_atendimento", type date}, {"mes_referencia", type date}, {"canal", type text}, {"motivo_contato", type text}, {"categoria", type text}, {"regiao", type text}, {"tempo_primeira_resposta_min", Int64.Type}, {"tempo_resolucao_horas", type number}, {"sla_cumprido", type text}, {"resolvido", type text}, {"status", type text}, {"nota_csat", Int64.Type}, {"nota_nps", Int64.Type}, {"reincidente_30d", type text}, {"comentario", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

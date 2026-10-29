@@ -1,40 +1,28 @@
-# Customer Experience Analytics — Metodologia
+# Metodologia e documentação
 
-## Objetivo
-
-Analisar indicadores de atendimento, satisfação, reclamações e qualidade, identificando tendências e segmentos que merecem investigação.
+## Escopo
+Projeto demonstrativo de BI para análise de atendimento e experiência do cliente, utilizando base sintética.
 
 ## Dados e granularidade
+- `base_satisfacao_clientes.csv`: registros de atendimento, um registro por `id_atendimento`.
+- `evolucao_mensal_reclamacoes.csv`: evolução agregada mensal de reclamações.
 
-- `base_satisfacao_clientes.csv`: registros sintéticos, um registro por `id_atendimento`.
-- `evolucao_mensal_reclamacoes.csv`: evolução mensal agregada de reclamações.
-- `Dim_Calendario`: dimensão de datas do modelo semântico.
+## Etapas analíticas
+1. Importação e tratamento dos CSVs no Power Query.
+2. Modelagem de tabelas e calendário no modelo semântico.
+3. Criação de medidas DAX para volumes, percentuais e evolução temporal.
+4. Análise de séries históricas e segmentações por canal, região e categoria.
+5. Interpretação dos resultados, ressalvando limitações de uma base fictícia.
 
-## Processo analítico
-
-1. Importação e transformação de dados no Power Query.
-2. Modelagem semântica e calendário.
-3. Medidas DAX para volumes, médias, taxas e variações.
-4. Comparações temporais e recortes por canal, região e categoria.
-5. Visualização e interpretação descritiva de resultados.
-
-## Indicadores e direção desejada
-
-| Indicador | Interpretação |
-| --- | --- |
-| Taxa de reclamações | Menor é melhor |
-| Taxa de reincidência em 30 dias | Menor é melhor |
-| Taxa de resolução | Maior é melhor |
-| SLA cumprido | Maior é melhor |
-| CSAT médio | Maior é melhor; escala de 1 a 5 |
-| NPS | Maior é melhor; escala de −100 a 100 |
-
-As cores de desempenho representam regras analíticas adotadas no estudo, não metas universais. Comparações anuais exigem períodos equivalentes e atenção aos filtros aplicados.
+## Cuidados com os indicadores
+- Taxas de reclamações e reincidência: **menor é melhor**.
+- Taxa de resolução e SLA cumprido: **maior é melhor**.
+- CSAT e NPS usam escalas diferentes de 0–100; qualquer conversão para pontuação deve ser documentada.
+- Faixas vermelho/amarelo/verde dependem de critérios de negócio explicitados no painel.
+- Comparações anuais precisam de períodos equivalentes para evitar viés.
 
 ## Limitações
-
-Todos os dados são fictícios. Os padrões não representam clientes, instituições ou operações reais. Correlações observadas não demonstram causalidade. O projeto PBIP pode exigir ajuste dos caminhos dos CSVs ao ser aberto em outro computador.
+Dados sintéticos, padrões criados para fins didáticos, ausência de validação causal e eventual necessidade de remapear caminhos de arquivos ao abrir o PBIP em outro computador.
 
 ## Reprodução
-
-Após baixar o projeto completo, abrir `portfolio.pbip` no Power BI Desktop, configurar as fontes CSV locais se necessário e atualizar os dados.
+Abra `portfolio.pbip` no Power BI Desktop e configure os caminhos dos CSVs se necessário.

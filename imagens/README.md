@@ -1,0 +1,1 @@
+Adicione aqui capturas reais das cinco páginas do Power BI. Sugestões: capa.png, visao-executiva.png, reclamacoes-qualidade.png, comparativo.png, metodologia.png. Não publique imagens com informações pessoais.

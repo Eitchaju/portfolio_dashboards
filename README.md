@@ -1,34 +1,54 @@
-# Portfólio de Business Intelligence | Julia Nayara Silva
+# Customer Experience Analytics | Power BI
 
-Projetos de análise de dados, Business Intelligence e Data Storytelling, com foco em transformar indicadores em decisões de negócio.
+> **Projeto de portfólio — dados inteiramente sintéticos.** Nenhuma informação representa clientes ou empresas reais.
 
-**Tecnologias:** Power BI · DAX · SQL · PostgreSQL · BigQuery · Python · Power Query · Modelagem dimensional
+## Visão geral
+Análise exploratória de experiência do cliente, satisfação e qualidade de atendimento. O painel ajuda a identificar tendências de reclamações, reincidência, resolução e cumprimento de SLA, além de comparar 2025 e 2026 e segmentar resultados por canal, região e categoria.
 
-## Customer Experience Analytics | Power BI
+**Ferramentas:** Power BI Desktop, Power Query, DAX, modelagem semântica e CSV.
 
-Estudo de caso com **dados 100% sintéticos** sobre satisfação do cliente, reclamações, reincidência, resolução e SLA, com comparação entre 2025 e 2026 e análises por canal, região e categoria.
+## Perguntas de negócio
+- Como evoluíram os atendimentos, reclamações e a satisfação?
+- Quais segmentos concentram maior volume de atendimentos e reclamações?
+- Como mudaram SLA, CSAT e NPS entre 2025 e 2026?
+- Quais sinais merecem investigação e priorização operacional?
 
-**Perguntas de negócio:** Como evolui a experiência do cliente? Quais segmentos concentram reclamações? Como variam os indicadores de qualidade ao longo do tempo?
+## Páginas do relatório
+1. **Capa** — apresentação do estudo.
+2. **Visão Executiva** — indicadores e tendências gerais.
+3. **Reclamações e Qualidade** — reclamações, reincidência, resolução e SLA.
+4. **Comparativo 2025 × 2026** — evolução anual e análises por segmento.
+5. **Sobre o Projeto | Metodologia** — contexto, definições, abordagem e limitações.
 
-**Páginas do dashboard:** Capa · Visão Executiva · Reclamações e Qualidade · Comparativo 2025 × 2026 · Sobre o Projeto / Metodologia.
+## Indicadores
+- **CSAT médio:** média das notas de satisfação (escala 1 a 5).
+- **NPS:** percentual de promotores menos percentual de detratores (escala −100 a 100).
+- **Taxa de reclamações:** proporção de atendimentos classificados como reclamações.
+- **Taxa de reincidência:** proporção definida pelo sinalizador de reincidência em 30 dias.
+- **Taxa de resolução:** proporção de atendimentos resolvidos.
+- **SLA cumprido:** proporção dentro do prazo acordado.
 
-**Indicadores:** CSAT, NPS, taxa de reclamações, taxa de reincidência, taxa de resolução e SLA cumprido.
+**Interpretação:** reclamações e reincidência são melhores quando menores; resolução, SLA, CSAT e NPS são melhores quando maiores. As faixas de cores do painel são critérios analíticos do estudo, não padrões universais.
 
-> **Arquivos do projeto:** o PBIP editável, os CSVs sintéticos e as capturas do dashboard ainda precisam ser enviados. Consulte a [metodologia](docs/METODOLOGIA.md).
+## Base de dados
+Os arquivos CSV ficam em `customer_experience_portfolio/`. A base é fictícia, com dados de atendimentos e uma tabela de evolução mensal. Consulte o arquivo `docs/METODOLOGIA.md` para premissas e cuidados de interpretação.
 
-### Interpretação dos indicadores
+## Como abrir
+1. Baixe o repositório em **Code → Download ZIP** e extraia tudo.
+2. Instale/abra o **Power BI Desktop**.
+3. Abra `portfolio.pbip` a partir da pasta extraída.
+4. Se necessário, use **Transformar dados → Configurações da fonte de dados** para apontar os CSVs ao caminho local dentro de `customer_experience_portfolio/` e atualize o modelo.
 
-- Reclamações e reincidência: quanto menor, melhor.
-- SLA e taxa de resolução: quanto maior, melhor.
-- CSAT e NPS possuem escalas diferentes; não são percentuais intercambiáveis.
-- As faixas de desempenho são critérios do estudo, não referências universais.
+O PBIP inclui o relatório e o modelo semântico editáveis. A disponibilidade dos dados ao abrir pode depender dos caminhos locais de origem no Power Query.
 
-## Sobre mim
+## Imagens do dashboard
+Adicione capturas reais à pasta `imagens/`. Quando estiverem disponíveis, inclua-as aqui no README para que o projeto possa ser visto sem abrir o Power BI.
 
-Analista de Dados e Business Intelligence com experiência em serviços financeiros, governança de dados, indicadores de performance, automação e visualização analítica.
+## Limitações e próximos passos
+- Dados sintéticos; não permitem generalizações para uma operação real.
+- Relações entre indicadores são descritivas, não evidência de causalidade.
+- Antes de comparar períodos, confirme equivalência de meses e filtros aplicados.
+- Recomenda-se validar segmentações, medidas e formatação após atualizar a base no Power BI Desktop.
 
-[LinkedIn](https://www.linkedin.com/in/julia-nayara-silva/)
-
-## Nota sobre os dados
-
-Este é um projeto demonstrativo. Os dados são fictícios e não contêm informações de clientes ou operações reais.
+## Autoria
+Projeto de portfólio de Business Intelligence. **Personalize esta seção com seu nome profissional e o link do LinkedIn antes de publicar.**

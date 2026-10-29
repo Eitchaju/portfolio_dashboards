@@ -1,0 +1,13 @@
+relationship 05e20a17-5dcf-48a0-a87c-b41f553cff67
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fato_Atendimentos.mes_referencia
+	toColumn: LocalDateTable_e2a243fe-3e6e-4fb5-bc5b-c9b9d85a8dc7.Date
+
+relationship cdd9e4cd-ac11-a3c3-6861-2dbe3c552ef3
+	fromColumn: Fato_Atendimentos.data_atendimento
+	toColumn: Dim_Calendario.Date
+
+relationship c434ad10-db21-2f8a-f6e0-a774370dc0ee
+	fromColumn: evolucao_mensal_reclamacoes.mes_referencia
+	toColumn: Dim_Calendario.Date
+

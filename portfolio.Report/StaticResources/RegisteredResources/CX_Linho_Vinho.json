@@ -1,0 +1,43 @@
+{
+  "name": "CX | Linho e Vinho",
+  "dataColors": [
+    "#713D4B",
+    "#A49B95",
+    "#D8C9B5",
+    "#383432",
+    "#9C6878",
+    "#8C817A",
+    "#C2B5A8"
+  ],
+  "background": "#F3EFE8",
+  "foreground": "#383432",
+  "tableAccent": "#713D4B",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": "#FFFCF8",
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": "#E6DDD3",
+            "radius": 8
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontColor": "#383432",
+            "fontSize": 13,
+            "fontFamily": "Segoe UI Semibold"
+          }
+        ]
+      }
+    }
+  }
+}

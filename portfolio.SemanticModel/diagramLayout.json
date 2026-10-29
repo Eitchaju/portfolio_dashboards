@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 63,
+            "y": 244
+          },
+          "nodeIndex": "evolucao_mensal_reclamacoes",
+          "nodeLineageTag": "ac0dba52-fac4-4359-8b5a-abb8bce53e28",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 532,
+            "y": 245
+          },
+          "nodeIndex": "Fato_Atendimentos",
+          "nodeLineageTag": "b0fee1cc-e400-4479-a2ab-ea2cbd91b692",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 291,
+            "y": 0
+          },
+          "nodeIndex": "Dim_Calendario",
+          "nodeLineageTag": "edb0da93-fd05-49c4-9445-46aa01653d67",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 753,
+            "y": 220.5
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "7674f86f-4e29-4b76-9684-08d8738954b2",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

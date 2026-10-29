@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "f49e7fbf416d4a33a054",
+  "position": {
+    "x": 72,
+    "y": 90,
+    "z": 6,
+    "height": 75,
+    "width": 1650,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Sobre o Projeto  |  Metodologia",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "34pt",
+                      "color": "#383432",
+                      "bold": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

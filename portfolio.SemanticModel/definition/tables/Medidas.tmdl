@@ -1,0 +1,215 @@
+table Medidas
+	lineageTag: 7674f86f-4e29-4b76-9684-08d8738954b2
+
+	measure 'Total Atendimentos' = ```
+			
+			COUNTROWS(Fato_Atendimentos)
+			
+			```
+		formatString: 0
+		lineageTag: ffff6329-d049-4fe7-9161-2650f248fba5
+
+	measure 'Total Reclamações' = ```
+			
+			CALCULATE(
+			    [Total Atendimentos],
+			    Fato_Atendimentos[motivo_contato] = "Reclamação"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 4a8773ac-106a-43be-b945-68d667bd9d2f
+
+	measure 'Taxa Reclamações' = ```
+			
+			DIVIDE(
+			    [Total Reclamações],
+			    [Total Atendimentos],
+			    0
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c3eeeac8-4b86-453d-acce-8a2fc11db721
+
+	measure 'Reclamações Ativas' = CALCULATE([Total Reclamações], Fato_Atendimentos[resolvido] = "Não")
+		formatString: 0
+		lineageTag: b83be7a6-5d4e-4f8c-97c0-9cbe6121ffe1
+
+	measure 'Reclamações Reincidentes' = CALCULATE([Total Reclamações], Fato_Atendimentos[reincidente_30d] = "Sim")
+		formatString: 0
+		lineageTag: 08d86c5f-03f0-4b35-8b68-6d8aaf5b27a9
+
+	measure 'Taxa Reincidência' = DIVIDE([Reclamações Reincidentes], [Total Reclamações])
+		formatString: 0.0%
+		lineageTag: aa96a731-8a31-463b-b694-68d8d92769c9
+
+	measure 'Taxa Resolução' = DIVIDE(CALCULATE([Total Atendimentos], Fato_Atendimentos[resolvido] = "Sim"), [Total Atendimentos])
+		formatString: 0.0%
+		lineageTag: bc48f90a-5cd3-4366-9849-018ff13ae929
+
+	measure 'SLA Cumprido %' = DIVIDE(CALCULATE([Total Atendimentos], Fato_Atendimentos[sla_cumprido] = "Sim"), [Total Atendimentos])
+		formatString: 0.0%
+		lineageTag: 36c601a4-2797-4244-bad2-01c29e7b6ba4
+
+	measure 'CSAT Médio' = AVERAGE(Fato_Atendimentos[nota_csat])
+		formatString: 0.00
+		lineageTag: 4df5ba7e-6566-46b3-a7d3-dd4f5391e1f6
+
+	measure 'CSAT Satisfeitos %' = DIVIDE(CALCULATE(COUNTROWS(Fato_Atendimentos), Fato_Atendimentos[nota_csat] >= 4), CALCULATE(COUNTROWS(Fato_Atendimentos), NOT ISBLANK(Fato_Atendimentos[nota_csat])))
+		formatString: 0.0%
+		lineageTag: 166da809-03f2-42c0-bb38-996ed898f660
+
+	measure NPS =
+			VAR Promotores = CALCULATE(COUNTROWS(Fato_Atendimentos), Fato_Atendimentos[nota_nps] >= 9)
+			VAR Detratores = CALCULATE(COUNTROWS(Fato_Atendimentos), Fato_Atendimentos[nota_nps] <= 6)
+			VAR Respostas = CALCULATE(COUNTROWS(Fato_Atendimentos), NOT ISBLANK(Fato_Atendimentos[nota_nps]))
+			RETURN 100 * DIVIDE(Promotores - Detratores, Respostas)
+		formatString: 0.0
+		lineageTag: 6a9272a7-1d29-4100-8024-fdc3b05c6408
+
+	measure 'Tempo Resolução Médio (h)' = AVERAGE(Fato_Atendimentos[tempo_resolucao_horas])
+		formatString: 0.0
+		lineageTag: b25aeb1b-3f1e-47af-9154-b652040eecf8
+
+	measure 'Atendimentos Ano Anterior' = CALCULATE([Total Atendimentos], SAMEPERIODLASTYEAR(Dim_Calendario[Date]))
+		formatString: 0
+		lineageTag: 754ade20-ab8d-4e2c-9fd0-82271da563ac
+
+	measure 'Reclamações Ano Anterior' = CALCULATE([Total Reclamações], SAMEPERIODLASTYEAR(Dim_Calendario[Date]))
+		formatString: 0
+		lineageTag: 90edb508-1ce6-4743-ae8e-98250aee9532
+
+	measure 'Variação Reclamações YoY %' = DIVIDE([Total Reclamações] - [Reclamações Ano Anterior], [Reclamações Ano Anterior])
+		formatString: 0.0%
+		lineageTag: d11c6f63-7e47-42c8-a79b-d7d85551724c
+
+	measure 'Variação Atendimentos YoY %' = DIVIDE([Total Atendimentos] - [Atendimentos Ano Anterior], [Atendimentos Ano Anterior])
+		formatString: 0.0%
+		lineageTag: ce386ba7-2130-44b5-b97e-6570b55597ad
+
+	measure 'Reclamações Mês Anterior' = CALCULATE([Total Reclamações], DATEADD(Dim_Calendario[Date], -1, MONTH))
+		formatString: 0
+		lineageTag: bd857cd4-e96b-4f5c-a673-fc859a1e9f75
+
+	measure 'Variação Reclamações MoM %' = DIVIDE([Total Reclamações] - [Reclamações Mês Anterior], [Reclamações Mês Anterior])
+		formatString: 0.0%
+		lineageTag: ee24cdd8-824c-419e-bbd2-02a14878beca
+
+	measure 'Taxa Reclamações 2025' = CALCULATE([Taxa Reclamações], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2025)
+		formatString: 0.0%
+		lineageTag: 06d63362-77d8-4828-947c-2d04e2b96f0f
+
+	measure 'Taxa Reclamações 2026' = CALCULATE([Taxa Reclamações], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2026)
+		formatString: 0.0%
+		lineageTag: 15a5284a-3256-4f78-9066-1401ba15006b
+
+	measure 'SLA Cumprido % 2025' = CALCULATE([SLA Cumprido %], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2025)
+		formatString: 0.0%
+		lineageTag: b22d2f58-1d54-4be1-9bb0-9073e86df4a2
+
+	measure 'SLA Cumprido % 2026' = CALCULATE([SLA Cumprido %], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2026)
+		formatString: 0.0%
+		lineageTag: 8fbe10e6-55a2-46b5-935c-0833cb2ea688
+
+	measure 'CSAT Médio 2025' = CALCULATE([CSAT Médio], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2025)
+		formatString: 0.00
+		lineageTag: 3e2f5f31-246d-4a2e-a0f6-df562e76ee64
+
+	measure 'CSAT Médio 2026' = CALCULATE([CSAT Médio], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2026)
+		formatString: 0.00
+		lineageTag: 12d3783f-7c50-4f31-bb58-55de3fca0c81
+
+	measure 'NPS 2025' = CALCULATE([NPS], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2025)
+		formatString: 0.0
+		lineageTag: 77b906fd-0933-4bf8-93a4-101de3179bb1
+
+	measure 'NPS 2026' = CALCULATE([NPS], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2026)
+		formatString: 0.0
+		lineageTag: 64f9de08-66d8-48a6-a62c-e1bca03a5a91
+
+	measure 'Índice Taxa Reclamações' = 100 * (1 - [Taxa Reclamações])
+		formatString: 0.0
+		lineageTag: 4bc26359-c251-4b5d-873f-4d7aa92b3c49
+
+	measure 'Cor Índice Taxa Reclamações' = SWITCH(TRUE(), [Índice Taxa Reclamações] > 80, "#36846C", [Índice Taxa Reclamações] >= 60, "#D4A53F", "#C65A57")
+		lineageTag: 1e2e6cf2-bc92-4e96-b70d-c227bf8813be
+
+	measure 'Índice Taxa Reincidência' = 100 * (1 - [Taxa Reincidência])
+		formatString: 0.0
+		lineageTag: 7b86aa05-feb6-4484-98d8-4892edf8889b
+
+	measure 'Cor Índice Taxa Reincidência' = SWITCH(TRUE(), [Índice Taxa Reincidência] > 80, "#36846C", [Índice Taxa Reincidência] >= 60, "#D4A53F", "#C65A57")
+		lineageTag: 31292c68-78e1-47d7-a9f3-fdf4bc7117ef
+
+	measure 'Índice Taxa Resolução' = 100 * [Taxa Resolução]
+		formatString: 0.0
+		lineageTag: 35f7c729-04b9-4d7a-9201-aba243282c6b
+
+	measure 'Cor Índice Taxa Resolução' = SWITCH(TRUE(), [Índice Taxa Resolução] > 80, "#36846C", [Índice Taxa Resolução] >= 60, "#D4A53F", "#C65A57")
+		lineageTag: 749be955-7bac-4f95-8268-2e95ea32736e
+
+	measure 'Índice CSAT Médio' = 20 * [CSAT Médio]
+		formatString: 0.0
+		lineageTag: d73e7d34-76b6-4b9a-9f5e-b601a0a42831
+
+	measure 'Cor Índice CSAT Médio' = SWITCH(TRUE(), [Índice CSAT Médio] > 80, "#36846C", [Índice CSAT Médio] >= 60, "#D4A53F", "#C65A57")
+		lineageTag: aee46754-be6a-4fcf-adce-f3b361e0fc2e
+
+	measure 'Índice NPS' = ([NPS] + 100) / 2
+		formatString: 0.0
+		lineageTag: fe9fabca-2d04-451b-acf5-50d1dcee6992
+
+	measure 'Cor Índice NPS' = SWITCH(TRUE(), [Índice NPS] > 80, "#36846C", [Índice NPS] >= 60, "#D4A53F", "#C65A57")
+		lineageTag: 661527eb-f1da-456d-8259-7f633249cbdf
+
+	measure 'Escala Mínima Percentual' = 0
+		formatString: 0.0%
+		lineageTag: dd7bfad4-e61a-4874-aabf-8d9dda7e7c5b
+
+	measure 'Escala Máxima Percentual' = 1
+		formatString: 0.0%
+		lineageTag: a00cb5ee-def3-4dcd-8d88-da0cc1138f88
+
+	measure 'Escala Mínima CSAT' = 0
+		formatString: 0.00
+		lineageTag: d8c0c080-2523-48b8-a489-7d5a67e9c053
+
+	measure 'Escala Máxima CSAT' = 5
+		formatString: 0.00
+		lineageTag: 24e18431-2124-4d01-ad93-cb0dc1dbca0d
+
+	measure 'Escala Mínima NPS' = -100
+		formatString: 0.0
+		lineageTag: 8e4d5469-c95b-4256-9a4b-f405d2da292a
+
+	measure 'Escala Máxima NPS' = 100
+		formatString: 0.0
+		lineageTag: c3daceb1-550b-415c-b362-a35e57a4e0a9
+
+	measure 'Atendimentos 2025 - Perfil' = CALCULATE([Total Atendimentos], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2025)
+		formatString: #,0
+
+	measure 'Atendimentos 2026 - Perfil' = CALCULATE([Total Atendimentos], REMOVEFILTERS(Dim_Calendario[Ano]), Dim_Calendario[Ano] = 2026)
+		formatString: #,0
+
+	column Auxiliar
+		dataType: int64
+		formatString: 0
+		lineageTag: 07c22ad5-3e46-461b-b77f-c3ae77ca41fb
+		summarizeBy: sum
+		sourceColumn: Auxiliar
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Auxiliar = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Auxiliar", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

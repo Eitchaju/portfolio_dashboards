@@ -1,0 +1,111 @@
+table evolucao_mensal_reclamacoes
+	lineageTag: ac0dba52-fac4-4359-8b5a-abb8bce53e28
+
+	column mes_referencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1a472e3a-2dd6-4b32-bd83-c1b4aa84a4ce
+		summarizeBy: none
+		sourceColumn: mes_referencia
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_atendimentos
+		dataType: string
+		lineageTag: 2cab02d6-6170-4d4c-a235-4144807ca329
+		summarizeBy: none
+		sourceColumn: total_atendimentos
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_reclamacoes
+		dataType: string
+		lineageTag: 1808bc64-6e37-4f69-9d87-81ee02a7af19
+		summarizeBy: none
+		sourceColumn: total_reclamacoes
+
+		annotation SummarizationSetBy = Automatic
+
+	column percentual_reclamacoes
+		dataType: double
+		lineageTag: 5d2f4321-51c7-431e-ae72-e0c34dfd7007
+		summarizeBy: sum
+		sourceColumn: percentual_reclamacoes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column variacao_mensal_reclamacoes_pct
+		dataType: double
+		lineageTag: 0535281e-a28a-404f-ade2-feaba55a532a
+		summarizeBy: sum
+		sourceColumn: variacao_mensal_reclamacoes_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column csat_medio
+		dataType: double
+		lineageTag: 776996c3-d5bc-49de-a0fe-012285514d5f
+		summarizeBy: sum
+		sourceColumn: csat_medio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nps_score
+		dataType: double
+		lineageTag: aeb4fe1b-a4dc-4037-b79d-a350cf7db3f9
+		summarizeBy: sum
+		sourceColumn: nps_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column taxa_resolucao_pct
+		dataType: double
+		lineageTag: 43dc4095-2f78-4883-bf0f-c3e9bad0dbee
+		summarizeBy: sum
+		sourceColumn: taxa_resolucao_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sla_cumprido_pct
+		dataType: double
+		lineageTag: 3eff841d-e678-4417-ab90-f90651830001
+		summarizeBy: sum
+		sourceColumn: sla_cumprido_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition evolucao_mensal_reclamacoes = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\vitor\Documents\Portfólio Ju\customer_experience_portfolio\customer_experience_portfolio\evolucao_mensal_reclamacoes.csv"),[Delimiter=";", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado com Localidade" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos", {{"percentual_reclamacoes", type number}}, "en-US"),
+				    #"Tipo Alterado com Localidade1" = Table.TransformColumnTypes(#"Tipo Alterado com Localidade", {{"variacao_mensal_reclamacoes_pct", type number}}, "en-US"),
+				    #"Tipo Alterado com Localidade2" = Table.TransformColumnTypes(#"Tipo Alterado com Localidade1", {{"csat_medio", type number}}, "en-US"),
+				    #"Tipo Alterado com Localidade3" = Table.TransformColumnTypes(#"Tipo Alterado com Localidade2", {{"nps_score", type number}}, "en-US"),
+				    #"Tipo Alterado com Localidade4" = Table.TransformColumnTypes(#"Tipo Alterado com Localidade3", {{"taxa_resolucao_pct", type number}}, "en-US"),
+				    #"Tipo Alterado com Localidade5" = Table.TransformColumnTypes(#"Tipo Alterado com Localidade4", {{"sla_cumprido_pct", type number}}, "en-US")
+				in
+				    #"Tipo Alterado com Localidade5"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

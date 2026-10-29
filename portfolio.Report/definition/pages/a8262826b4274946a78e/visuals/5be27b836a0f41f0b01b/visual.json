@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "5be27b836a0f41f0b01b",
+  "position": {
+    "x": 38,
+    "y": 68,
+    "z": 13000,
+    "height": 63,
+    "width": 1410,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Reclamações e Qualidade",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "31pt",
+                      "color": "#383432",
+                      "bold": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

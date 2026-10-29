@@ -1,0 +1,24 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Fato_Atendimentos","evolucao_mensal_reclamacoes","Medidas"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Fato_Atendimentos
+ref table DateTableTemplate_b50725c6-f72d-49b7-ace8-629e02ddbf25
+ref table LocalDateTable_e2a243fe-3e6e-4fb5-bc5b-c9b9d85a8dc7
+ref table evolucao_mensal_reclamacoes
+ref table Dim_Calendario
+ref table Medidas
+
+ref cultureInfo pt-BR
+

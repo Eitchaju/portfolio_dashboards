@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d0591e25a02043b8bfa3",
+  "position": {
+    "x": 105,
+    "y": 150,
+    "z": 11000,
+    "height": 100,
+    "width": 1540,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "A experiência em números.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "45pt",
+                      "color": "#383432",
+                      "bold": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

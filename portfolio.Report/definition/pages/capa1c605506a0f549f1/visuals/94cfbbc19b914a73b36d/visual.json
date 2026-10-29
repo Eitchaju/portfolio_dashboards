@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "94cfbbc19b914a73b36d",
+  "position": {
+    "x": 105,
+    "y": 516,
+    "z": 6000,
+    "height": 60,
+    "width": 815,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "O panorama geral",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "30pt",
+                      "color": "#383432",
+                      "bold": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
