@@ -66,6 +66,45 @@ Objetivos, definições, abordagem analítica e limitações.
 
 ![Página Metodologia](imagens/05%20-%20Metodologia.png)
 
+## Principais insights do cenário simulado
+
+Os indicadores abaixo representam o recorte geral apresentado no dashboard, sem filtros adicionais. Como a base é sintética, os achados ilustram uma abordagem analítica e não descrevem uma operação real.
+
+| Indicador | Resultado exibido |
+| --- | ---: |
+| Atendimentos | **3.258** |
+| Reclamações | **1.298** |
+| Taxa de reclamações | **39,84%** |
+| CSAT médio | **3,69 / 5** |
+| NPS | **−20,7** |
+| SLA cumprido | **78,5%** |
+| Reincidência em 30 dias | **25,6%** |
+| Taxa de resolução | **83,8%** |
+
+### 1. Crescimento de volume com pressão sobre a experiência
+
+O painel indica aumento de atendimentos e reclamações ao longo do período analisado. Na comparação anual apresentada, o volume de atendimentos cresce **133,0%** e o de reclamações, **212,8%**. A diferença entre os ritmos de crescimento sugere a necessidade de investigar os motivos de contato e os segmentos mais afetados.
+
+### 2. Queda acentuada no cumprimento do SLA em 2026
+
+A série mensal mostra uma deterioração expressiva do SLA no segundo semestre de 2026, ao mesmo tempo em que os indicadores de satisfação também enfraquecem. Essa simultaneidade merece investigação, mas **não comprova relação causal**.
+
+### 3. Reincidência e resolução como oportunidades de melhoria
+
+A reincidência de **25,6%** sinaliza oportunidade de avaliar a efetividade das soluções e os motivos de novos contatos. A taxa de resolução de **83,8%** ajuda a acompanhar a capacidade de encerrar atendimentos, mas deve ser analisada em conjunto com reincidência, SLA e satisfação.
+
+### 4. Segmentação para priorizar ações
+
+As visões por **canal, região e categoria** permitem identificar onde se concentram volumes e reclamações. A priorização deve considerar tanto quantidades absolutas quanto taxas proporcionais, para evitar que segmentos maiores pareçam piores apenas pelo volume.
+
+## Recomendações de negócio
+
+1. Investigar a mudança de patamar do SLA em 2026, separando resultados por canal, região e categoria.
+2. Analisar os principais motivos de reclamação e sua participação no volume total de atendimentos.
+3. Acompanhar a reincidência em 30 dias junto à resolução e ao CSAT, buscando indícios de soluções pouco efetivas.
+4. Definir metas e limites de alerta por indicador, respeitando a direção desejada de cada métrica: reclamações e reincidência **menores**; resolução, SLA, CSAT e NPS **maiores**.
+5. Validar comparações anuais com períodos equivalentes e o mesmo contexto de filtros.
+
 ## Limitações e próximos passos
 - Dados sintéticos; não permitem generalizações para uma operação real.
 - Relações entre indicadores são descritivas, não evidência de causalidade.
