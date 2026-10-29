@@ -41,8 +41,30 @@ Os arquivos CSV ficam em `customer_experience_portfolio/`. A base é fictícia, 
 
 O PBIP inclui o relatório e o modelo semântico editáveis. A disponibilidade dos dados ao abrir pode depender dos caminhos locais de origem no Power Query.
 
-## Imagens do dashboard
-Adicione capturas reais à pasta `imagens/`. Quando estiverem disponíveis, inclua-as aqui no README para que o projeto possa ser visto sem abrir o Power BI.
+## Conheça o dashboard
+
+### Capa — Customer Experience Analytics
+![Capa do Customer Experience Analytics](imagens/01%20-%20Capa.png)
+
+### Visão Executiva
+Panorama de atendimentos, satisfação e indicadores de qualidade.
+
+![Página Visão Executiva](imagens/02%20-%20Visao-executiva.png)
+
+### Reclamações e Qualidade
+Acompanhamento de reclamações, reincidência, resolução e SLA.
+
+![Página Reclamações e Qualidade](imagens/03%20-%20Reclamacoes-qualidade.png)
+
+### Comparativo 2025 × 2026
+Evolução dos indicadores e comparações entre períodos.
+
+![Página Comparativo 2025 e 2026](imagens/04%20-%20Comparativo-2025-2026.png)
+
+### Sobre o Projeto | Metodologia
+Objetivos, definições, abordagem analítica e limitações.
+
+![Página Metodologia](imagens/05%20-%20Metodologia.png)
 
 ## Limitações e próximos passos
 - Dados sintéticos; não permitem generalizações para uma operação real.
@@ -51,4 +73,4 @@ Adicione capturas reais à pasta `imagens/`. Quando estiverem disponíveis, incl
 - Recomenda-se validar segmentações, medidas e formatação após atualizar a base no Power BI Desktop.
 
 ## Autoria
-Projeto de portfólio de Business Intelligence. **Personalize esta seção com seu nome profissional e o link do LinkedIn antes de publicar.**
+**Julia Nayara Silva** — Portfólio de Business Intelligence e Análise de Dados.
